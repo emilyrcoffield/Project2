@@ -5,6 +5,9 @@ from sqlalchemy_utils import create_database, database_exists
 import os
 import json
 import credentials
+# import mysql-connect-python
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Init app
 app = Flask(__name__)
