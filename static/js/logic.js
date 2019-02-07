@@ -16,9 +16,9 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 
 var APILink = "http://data.beta.nyc//dataset/d6ffa9a4-c598-4b18-8caf-14abde6a5755/resource/74cdcc33-512f-439c-a43e-c09588c4b391/download/60dbe69bcd3640d5bedde86d69ba7666geojsonmedianhouseholdincomecensustract.geojson";
-var state = "New York";
+var State = "STATEFP10";
 
-var url = APILink + state;
+var url = APILink + State;
 
 
 
@@ -32,7 +32,7 @@ d3.json(url, function(data) {
 
     // Define what  property in the features to use
     valueProperty: "MED_VAL",
-    valueState: "New York",
+    valueState: "STATEFP10",
 
     // Set color scale
     scale: ["#ffffb2", "#b10026"],
