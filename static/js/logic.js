@@ -23,12 +23,17 @@ var url = APILink + State;
 
 
 var geojson;
-
+function NYCFilter(feature) {
+  if (feature.properties.COUNTY === "New York County"||feature.properties.COUNTY === "Bronx County"||
+  feature.properties.COUNTY === "Kings County"||feature.properties.COUNTY === "Queens County"||
+  feature.properties.COUNTY === "Richmond County"
+  ) return true
+  }
 // Grab data with d3
 d3.json(url, function(data) {
 
   // Create a new choropleth layer
-  geojson = L.choropleth(data, {
+  geojson = L.choropleth(data, {filter: NYCFilter,
 
     // Define what  property in the features to use
     valueProperty: "MED_VAL",

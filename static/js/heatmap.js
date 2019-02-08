@@ -17,6 +17,8 @@ d3.json(url, function(response) {
   
 // console.log(response);
 // var coordinates = [url.longitude, url.latitude];
+
+var violations = heatArray
 var heatArray = [];
 
 for (var i = 0; i < response.length; i++) {
@@ -29,9 +31,16 @@ for (var i = 0; i < response.length; i++) {
 }
 console.log(heatArray)
 var heat = L.heatLayer(heatArray, {
-  radius: 20,
-  blur: 35
+  minOpacity: 0.05,
+  maxZoom: 18,
+  radius: 40,
+  blur: 35  
+
   
 }).addTo(myMap);
 
+
+
+
 });
+
