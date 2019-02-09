@@ -4,9 +4,10 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func, inspect
+from collections import Counter
 import datetime
 
-engine = create_engine("sqlite:///Project2/Data/SQLite/Housing_Code_Violations.sqlite")
+engine = create_engine("sqlite:///Data/SQLite/crime.sqlite")
 
 
 
@@ -19,7 +20,7 @@ Base.prepare(engine, reflect=True)
 Base.classes.keys()
 
 #table reference
-hcv = Base.classes.housing_code_violations
+db = Base.classes.crime
 
 #Session link
 session = Session(engine)
@@ -31,13 +32,26 @@ session = Session(engine)
 
 app = Flask(__name__)
 
-@app.route('/hcv')
+@app.route('/')
 def opening():
 
     """Return Housing Code Violation Data"""
-    results = session.query(hcv.latitude, hcv.longitude).all()
+    results = session.query(db.boro_nm, db.cmplnt_fr_dt).all()
+     
+    borough = [result[0] for result in results]
+    
 
-    return jsonify(results)
+    borough_names = list(Counter(borough).keys())
+    crime_count = list(Counter(borough).values())
+
+    trace = {
+            "x": borough_names,
+            "y": crime_count,
+            "type": "bar"
+        }
+
+    return jsonify(trace)
+
 
 if __name__ == '__main__':
    app.run(debug=True)
