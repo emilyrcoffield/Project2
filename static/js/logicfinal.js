@@ -1,18 +1,50 @@
-// Creating map object
-var myMap = L.map("map", {
-  center: [40.7128, -74.0059],
-  zoom: 11
+var url = "https://data.cityofnewyork.us/resource/b2iz-pps8.json?";
+
+var heat = d3.json(url, function(response) {
+  
+
+  var heatArray = [];
+  
+  for (var i = 0; i < response.length; i++) {
+    
+    var location = response[i].coordinates;
+  
+    if (response[i].latitude && response[i].longitude) {
+      heatArray.push([response[i].latitude, response[i].longitude]);
+    }
+  }
+  console.log(heatArray)
+  var heat = L.heatLayer(heatArray, {
+    minOpacity: 0.1,
+    maxZoom: 18,
+    radius: 40,
+    blur: 35,
+  
+  }); 
+    
+   
+  var streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.streets",
+    accessToken: API_KEY
+  });
+  
+
+  var baseMaps = {
+    "Street Map": streetmap,
+  };
+
+  var overlayMaps = {
+    Violations: heat
+  };
+
+
+var mymap = L.map("map", {
+  center: [40.7, -73.95],
+  zoom: 11,
+  layers: [streetmap, heat]
 });
-
-// Adding tile layer
-L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-  maxZoom: 18,
-  id: "mapbox.streets",
-  accessToken: API_KEY
-}).addTo(myMap);
-
-// Link to GeoJSON
 
 
 var APILink = "http://data.beta.nyc//dataset/d6ffa9a4-c598-4b18-8caf-14abde6a5755/resource/74cdcc33-512f-439c-a43e-c09588c4b391/download/60dbe69bcd3640d5bedde86d69ba7666geojsonmedianhouseholdincomecensustract.geojson";
@@ -51,7 +83,7 @@ d3.json(url, function(data) {
       // Border color
       color: "#fff",
       weight: 1,
-      fillOpacity: 0.8
+      fillOpacity: 0.6
     },
 
     // Binding a pop-up to each layer
@@ -59,7 +91,7 @@ d3.json(url, function(data) {
       layer.bindPopup(feature.properties.LOCALNAME + ", " + feature.properties.State + "<br>Median Home Value:<br>" +
         "$" + feature.properties.MED_VAL);
     }
-  }).addTo(myMap);
+  }).addTo(mymap);
 
   // Set up the legend
   var legend = L.control({ position: "bottomright" });
@@ -87,6 +119,12 @@ d3.json(url, function(data) {
   };
 
   // Adding legend to the map
-  legend.addTo(myMap);
+  legend.addTo(mymap);
+
+  L.control.layers(baseMaps, overlayMaps, {
+    collapsed: false
+  }).addTo(mymap);
+  });
 
 });
+
