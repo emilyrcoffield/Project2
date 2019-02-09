@@ -9,6 +9,9 @@
   <!--D3 cdn-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
 
+  <!--Plotly-->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -167,11 +170,9 @@
 			<main class="content">
 
 				<div class="container-fluid p-0">
-
-					<div class="row">
-
 <!-- 
-MAIN MAP STARTS HERE--------------------------------------------------------------------------------->
+MAIN MAP SECTION STARTS HERE--------------------------------------------------------------------------------->
+					<div class="row">
 						<div class="col-lg-6 col-xl-12">
 								<div class="card flex-fill w-100">
 									<div class="card-header">
@@ -194,9 +195,33 @@ MAIN MAP STARTS HERE------------------------------------------------------------
 						</div>
 					</div>
 <!-- 
-MAIN CHART STARTS HERE--------------------------------------------------------------------------------->
+MAIN CHART SECTION STARTS HERE--------------------------------------------------------------------------------->
+					<!-- <div class="row">
+						<div class="col-lg-6 col-xl-12">
+								<div class="card flex-fill w-100">
+									<div class="card-header">
+										<div class="card-actions float-right">
+						<i class="align-middle" data-feather="more-horizontal"></i>
+						</a>
+										</div>
+										<h5 class="card-title mb-0">NYC Map</h5>
+									</div>
+									<div class="card-body p-2">
+										<div id="map" style="height:600px;"></div>
+									</div>
+								</div>
 
-					<!-- <div class="row">			
+								<script type="text/javascript" src="config.js"></script>
+								<script type="text/javascript" src="logicfinal.js"></script>
+								<script type="text/javascript" src="leaflet-heat.js"></script>
+
+							</div>
+						</div>
+					</div> -->
+<!-- 
+MAIN CHART SECTION STARTS HERE--------------------------------------------------------------------------------->
+
+					<div class="row">			
 						<div class="col-12 col-lg-12 d-flex">
 							<div class="card flex-fill w-100">
 								<div class="card-header">
@@ -218,64 +243,15 @@ MAIN CHART STARTS HERE----------------------------------------------------------
 								<div class="card-body d-flex w-100">
 									<div style="height:400px;"></div>
 									<div class="align-self-center chart">
-										<canvas id="chartjs-dashboard-bar-devices"></canvas>
+										<!-- <canvas id="chartjs-dashboard-bar-devices"></canvas> -->
+										<div id="plot"></div>
+										<script src="Chart.js"></script>
 									</div>
 								</div>
 							</div>
-
-							<script>
-								document.addEventListener("DOMContentLoaded", function(event) {
-									// Bar chart
-									new Chart(document.getElementById("chartjs-dashboard-bar-devices"), {
-										type: 'bar',
-										data: {
-											labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-											datasets: [{
-												label: "Mobile",
-												backgroundColor: "#47BAC1",
-												borderColor: "#47BAC1",
-												hoverBackgroundColor: "#47BAC1",
-												hoverBorderColor: "#47BAC1",
-												data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79]
-											}, {
-												label: "Desktop",
-												backgroundColor: "#E8EAED",
-												borderColor: "#E8EAED",
-												hoverBackgroundColor: "#E8EAED",
-												hoverBorderColor: "#E8EAED",
-												data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68]
-											}]
-										},
-										options: {
-											maintainAspectRatio: false,
-											legend: {
-												display: false
-											},
-											scales: {
-												yAxes: [{
-													gridLines: {
-														display: false
-													},
-													stacked: false,
-													ticks: {
-														stepSize: 20
-													}
-												}],
-												xAxes: [{
-													barPercentage: .75,
-													categoryPercentage: .5,
-													stacked: false,
-													gridLines: {
-														color: "transparent"
-													}
-												}]
-											}
-										}
-									});
-								});
-							</script>
 						</div>
-					</div> -->
+					</div>
+
 <!-- 
 MAIN TABLE STARTS HERE--------------------------------------------------------------------------------->
 
