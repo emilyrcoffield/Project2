@@ -32,7 +32,7 @@ session = Session(engine)
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/crime')
 def opening():
 
     """Return Housing Code Violation Data"""
