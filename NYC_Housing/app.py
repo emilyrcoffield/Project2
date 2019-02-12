@@ -1,11 +1,14 @@
 # 1. import 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine, func, inspect
 from collections import Counter
 import datetime
+
+
+app = Flask(__name__)
 
 engine = create_engine("sqlite:///Data/SQLite/crime.sqlite")
 
@@ -23,14 +26,21 @@ Base.classes.keys()
 db = Base.classes.crime
 
 #Session link
-session = Session(engine)
+session = scoped_session(sessionmaker(bind=engine))
 
 #################################################
 # Flask Setup
 #################################################
 
 
-app = Flask(__name__)
+
+
+@app.route('/')
+def home():
+    return render_template("dashboard-analytics2.html")
+
+
+
 
 @app.route('/crime')
 def opening():
@@ -53,5 +63,8 @@ def opening():
     return jsonify(trace)
 
 
+
+
+
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(port = 5001)
