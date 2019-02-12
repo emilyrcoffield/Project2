@@ -45,7 +45,7 @@ def home():
 @app.route('/crime')
 def opening():
 
-    """Return Housing Code Violation Data"""
+    """Return Crimes per Borough"""
     results = session.query(db.boro_nm, db.cmplnt_fr_dt).all()
      
     borough = [result[0] for result in results]
