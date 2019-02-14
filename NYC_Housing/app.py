@@ -40,22 +40,21 @@ def home():
     return render_template("dashboard-analytics2.html")
 
 
+@app.route('/crime/<offense>')
+def crime_2016(offense):
 
-
-@app.route('/crime')
-def opening():
-
-    """Return Crimes per Borough"""
-    results = session.query(db.boro_nm, db.cmplnt_fr_dt).all()
+    """Return # of crimes per borough"""
+    results = session.query(db.boro_nm, db.ofns_desc).filter(db.boro_nm != "").filter(db.ofns_desc == offense)
      
     borough = [result[0] for result in results]
     
 
-    borough_names = list(Counter(borough).keys())
+    boroughs = list(Counter(borough).keys())
+    
     crime_count = list(Counter(borough).values())
 
     trace = {
-            "x": borough_names,
+            "x": boroughs,
             "y": crime_count,
             "type": "bar"
         }
@@ -63,6 +62,19 @@ def opening():
     return jsonify(trace)
 
 
+@app.route('/offense')
+def offenses():
+
+    """Return list of offenses"""
+    results = session.query(db.ofns_desc).filter(db.boro_nm != "")
+        
+    offenses = [result[0] for result in results]
+        
+
+    offense_list = list(Counter(offenses).keys())
+        
+            
+    return jsonify(offense_list)
 
 
 
