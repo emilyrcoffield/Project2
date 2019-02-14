@@ -39,6 +39,24 @@ session = scoped_session(sessionmaker(bind=engine))
 def home():
     return render_template("dashboard-analytics2.html")
 
+@app.route('/Chart.html')
+def Chart():
+    return render_template("/Chart.html")
+
+@app.route('/index.html')
+def index():
+    return render_template("/index.html")
+
+@app.route('/Money_Choropleth.html')
+def choro():
+    return render_template("/Money_Choropleth.html")
+
+@app.route('/Money_Choroplethfinal.html')
+def chorofinal():
+    return render_template("/Money_Choroplethfinal.html")
+
+
+
 
 @app.route('/crime/<offense>')
 def crime_2016(offense):
