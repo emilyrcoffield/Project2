@@ -17,6 +17,15 @@ Median Household Income for 2010 Census Tracts in the RPA region including estim
 ### Flask
 Flask was used as the micro framework to build the dashboard and access the MySQL database
 
-### Javascript Libraries
+### Leaflet JS Library
+The heatmap and chorpleth effects in our interactive maps on the dashboard were obtained from the leaflet librbary
+
+### Plotly JS Libary
+Plotly was used to create the bar charts outlining the major crimes in NYC boroughs
+
+## Screenshots
+
+
+
 
 
