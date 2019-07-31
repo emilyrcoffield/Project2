@@ -27,6 +27,11 @@ Plotly was used to create the bar charts outlining the major crimes in NYC borou
 
 ![image](images/Dashboard.jpg)
 
+Zooming into the map
+
+![image](images/Dashzoom.jpg)
+
+
 
 
 
