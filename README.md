@@ -13,4 +13,10 @@ This dataset includes all valid felony, misdemeanor, and violation crimes report
 ### NYC Median Home Values
 Median Household Income for 2010 Census Tracts in the RPA region including estimated breakdowns for transportation costs, housing costs, and income taxes.Last Updated: January 5, 2015
 
-##Technologies Used
+## Technologies Used
+### Flask
+Flask was used as the micro framework to build the dashboard and access the MySQL database
+
+### Javascript Libraries
+
+
