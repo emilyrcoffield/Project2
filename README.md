@@ -31,6 +31,10 @@ Zooming into the map
 
 ![image](images/Dashzoom.jpg)
 
+Charts
+
+![image](images/capture.jpg)
+
 
 
 
