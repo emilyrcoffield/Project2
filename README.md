@@ -36,6 +36,8 @@ Charts
 ![image](images/Capture.jpg)
 
 
+## Conclusions
 
+As expected, areas with more housing code violations implied a lower mean home value. This was very evident in the South Bronx, which is New Yorks poorest neighbourhood. It was interesting to note however that certain areas in Brooklyn, even with high concentrations of housing code violations continue to have very high home prices. This is most likely due to the ongoing trasnformation and gentrification of traditionally lower income areas of Brooklyn
 
 
