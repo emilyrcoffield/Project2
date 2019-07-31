@@ -33,7 +33,7 @@ Zooming into the map
 
 Charts
 
-![image](images/capture.jpg)
+![image](images/Capture.jpg)
 
 
 
